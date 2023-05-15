@@ -6,41 +6,49 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 import web.repositories.UserRepository;
+import web.repositories.UserRepositoryImp;
 
 import java.util.List;
 
 @Service
+public class UserServiceImp implements UserService {
+    private UserRepositoryImp userRepositoryImp;
+    private final UserRepository userRepository;
 
-public class UserService  {
-
-    private UserRepository userRepository;
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+
+    @Override
     @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 
+    @Override
     @Transactional
     public void add(User user) {
         userRepository.add(user);
     }
 
+    @Override
     @Transactional
     public void delete(int id) {
         userRepository.delete(id);
     }
 
+    @Override
     @Transactional
     public void edit(User user) {
         userRepository.edit(user);
     }
 
+    @Override
     @Transactional
     public User getById(int id) {
         return userRepository.getById(id);
     }
 }
+
