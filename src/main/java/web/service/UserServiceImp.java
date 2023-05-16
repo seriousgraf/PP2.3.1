@@ -22,7 +22,7 @@ public class UserServiceImp implements UserService {
 
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
@@ -33,8 +33,9 @@ public class UserServiceImp implements UserService {
         userRepository.add(user);
     }
 
-    @Override
+
     @Transactional
+    @Override
     public void delete(int id) {
         userRepository.delete(id);
     }
